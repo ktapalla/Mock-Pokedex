@@ -1,0 +1,50 @@
+
+<p class="p-3 m-3 border border-primary bg-light">
+    This website includes information about the first 
+    809 Pokemon in the Pokedex. You can search for 
+    them by their name, pokedex number, type, category,
+    and capture rate. You will be able to indicate which
+    pokemons you have, which you've seen, and your favorites.
+    You must signup or login to see the pokemon and to add
+    them to those lists.
+</p>
+    <% if (true || loggedIn) {%>  
+        <form method="post" action="/pokemon/byName">
+            Show Pokemon by Name: 
+              <input type="text" name="name" 
+                     placeholder="e.g. Squirtle">
+            <input type="submit">
+        </form>
+        <br>
+        <form method="post" action="/pokemon/byPokedexNum">
+            Show Pokemon by Pokedex Number: 
+            <input type="number" name="pokedexNum" 
+                   placeholder="e.g. 13">
+            <input type="submit">
+        </form>
+        <br>
+        <form method="post" action="/pokemon/byType">
+            Show Pokemon by Type: 
+            <input type="text" name="type" 
+                   placeholder="e.g. Development">
+            <input type="submit">
+        </form>
+        <br>
+        <form method="post" action="/pokemon/byCategory">
+            Show Pokemon by Category: 
+            <input type="text" name="category" 
+                   placeholder="e.g. Development">
+            <input type="submit">
+        </form>
+        <br>
+        <form method="post" action="/pokemon/byCaptureRate">
+            Show Pokemon by Minimum Capture Rate: 
+            <input type="number" name="captureRate" 
+                   placeholder="e.g. 50">
+            <input type="submit">
+        </form>
+        <br>
+        <a href="/pokemon/myStats">Show my Pokemon</a>
+    <% } %>
+
+
