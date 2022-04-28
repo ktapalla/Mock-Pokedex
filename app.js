@@ -18,12 +18,12 @@ const axios = require("axios")
 // *********************************************************** //
 //  Loading models
 // *********************************************************** //
-const Schedule = require('./models/pokemon')
+const Pokemon = require('./models/Pokemon')
 
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const courses = require('./public/data/pokedex.json')
+const pokedex = require('./public/data/pokedex.json')
 
 
 // *********************************************************** //
