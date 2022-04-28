@@ -131,7 +131,7 @@ app.get('/upsertDB',
   }
 )
 
-app.post('/pokemon/show',
+app.post('/pokemon/byName',
   // show data for a specific pokemon
   async (req,res,next) => {
     const {name} = req.body;
@@ -141,12 +141,31 @@ app.post('/pokemon/show',
   }
 )
 
-
-app.get('/pokemon/show/:name',
+app.get('/pokemon/byName/:name',
   // show a list of Pokemons by a given type
   async (req,res,next) => {
     const name = req.params.name
     const pokemon = await Pokemon.findOne({ name : {$regex: name, $options: 'i'}})
+    res.locals.pokemon = pokemon
+    res.render('pokemon')
+  } 
+)
+
+app.post('/pokemon/byPokedexNum',
+  // show data for a specific pokemon
+  async (req,res,next) => {
+    const {pokedexNum} = req.body;
+    const pokemon = await Pokemon.findOne({id:pokedexNum})
+    res.locals.pokemon = pokemon
+    res.render('pokemon')
+  }
+)
+
+app.get('/pokemon/byPokedexNum/:id',
+  // show a list of Pokemons by a given type
+  async (req,res,next) => {
+    const pokedexNum = req.params.id
+    const pokemon = await Pokemon.findOne({id:pokedexNum})
     res.locals.pokemon = pokemon
     res.render('pokemon')
   } 

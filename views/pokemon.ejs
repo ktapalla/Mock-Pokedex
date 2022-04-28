@@ -7,9 +7,9 @@
     </div>
     <div class="mb-2">
         <strong>Pokedex #: </strong><%= pokemon.id %> <br>
-        <strong>Type(s): </strong><%= pokemon['type1'] %> <br>               
+        <strong>Type(s): </strong><%= pokemon['type1'] %>              
         <% if (pokemon['type2'] != "None") { %>
-            ,<%= pokemon['type2'] %>
+            & <%= pokemon['type2'] %>
         <% } %>
     </div>
     <div class="mb-2">
