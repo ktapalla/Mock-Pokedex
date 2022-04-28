@@ -110,20 +110,19 @@ app.get("/", (req, res, next) => {
 /* ************************
   Loading (or reloading) the data into a collection
    ************************ */
-// this route loads in the courses into the Course collection
-// or updates the courses if it is not a new collection
+// this route loads in the pokemons into the Pokemon collection
+// or updates the pokemons if it is not a new collection
 
 app.get('/upsertDB',
   async (req,res,next) => {
-    //await Course.deleteMany({})
     for (pokemon of pokemons){
       const {
-        Id,name,Type1,Type2,abilities,category,height,weight,
+        id,name,type1,type2,abilities,category,height,weight,
         captureRate,eggSteps,expGroup,total,hp,attack,defense,
         spAttack,spDefense,speed,moves
       }=pokemon;
       await Pokemon.findOneAndUpdate(
-        {Id,name,Type1,Type2,abilities,category,height,weight,
+        {id,name,type1,type2,abilities,category,height,weight,
           captureRate,eggSteps,expGroup,total,hp,attack,defense,
           spAttack,spDefense,speed,moves},pokemon,{upsert:true})
     }
@@ -133,16 +132,24 @@ app.get('/upsertDB',
 )
 
 app.post('/pokemon/byType',
-  // show list of courses in a given subject
+  // show list of Pokemons of a specific type
   async (req,res,next) => {
     const {type} = req.body;
-    const pokemonsT1 = await Pokemon.find({ $or : [{Type1: type}, {Type2: type}],}).sort({id:1})
-    res.locals.pokemons = pokemonsT1 
-    //res.json(courses)
+    const pokemons = await Pokemon.find({ $or : [{type1: {$regex: type, $options: 'i'}}, {type2: {$regex: type, $options: 'i'}}]}).sort({id:1})
+    res.locals.pokemons = pokemons
     res.render('searchlist')
   }
 )
 
+app.get('/pokemon/byType/:type',
+  // show a list of Pokemons by a given type
+  async (req,res,next) => {
+    const type = req.params.type
+    const pokemons = await Pokemon.find({ $or : [{type1: {$regex: type, $options: 'i'}}, {type2: {$regex: type, $options: 'i'}}]}).sort({id:1})
+    res.locals.courses = courses
+    res.render('courselist')
+  } 
+)
 
 app.use(isLoggedIn)
 

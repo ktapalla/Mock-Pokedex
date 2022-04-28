@@ -5,13 +5,13 @@ const ObjectId = Schema.Types.ObjectId;
 const Mixed = Schema.Types.Mixed;
 
 var pokemonSchema = Schema( {
-    Id: Number,
+    id: Number,
     name: String,
-    Type1: String,
-    Type2: String,
+    type1: String,
+    type2: String,
     abilities: [String],
     category: String,
-    height: Number,
+    height: String,
     weight: Number,
     captureRate: Number,
     eggSteps: Number,

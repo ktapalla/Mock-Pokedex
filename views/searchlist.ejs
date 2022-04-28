@@ -1,78 +1,72 @@
 
-<% for (pokemon of pokemons) { 
-    const Id = pokemon['Id'];
-        const name = pokemon['name'];
-        const Type1 = pokemon['Type1'];
-        const Type2 = pokemon['Type2'];
-        const category = pokemon['category'];
-%>
-    <ul>
-        <li><strong><%=  pokemon['Id'] %> <%=  pokemon['name'] %> - </strong></li>
-    </ul>
-    <br>
-<% } %>
-<hr>
-<table class="sortable table table-bordered table-striped">
+<table class="table table-bordered table-striped mt-4">
     <thead>
         <tr>
-            <th>Pokemon Number</th>
-            <th>Name</th>
-            <th>Types</th>
-            <th>Category</th>
-            <th>HP</th>
-            <th>Attack</th>
-            <th>Defense</th>
-            <th>Sp. Attack</th>
-            <th>Sp. Defense</th>
-            <th>Moves</th>
+            <th style="text-align:center">Pokemon #</th>
+            <th style="text-align:center">Name</th>
+            <th style="text-align:center">Type(s)</th>
+            <th style="text-align:center">Category</th>
+            <th style="text-align:center">HP</th>
+            <th style="text-align:center">Attack</th>
+            <th style="text-align:center">Defense</th>
+            <th style="text-align:center">Sp. Attack</th>
+            <th style="text-align:center">Sp. Defense</th>
+            <th style="text-align:center">Catch Rate</th>
         </tr>
     </thead>
     <tbody></tbody>
     <% for (pokemon of pokemons) {
-        const Id = pokemon['Id'];
+        const id = pokemon['id'];
         const name = pokemon['name'];
-        const Type1 = pokemon['Type1'];
-        const Type2 = pokemon['Type2'];
+        const type1 = pokemon['type1'];
+        const type2 = pokemon['type2'];
         const category = pokemon['category'];
         const hp = pokemon['hp'];
         const attack = pokemon['attack'];
         const defense = pokemon['defense'];
         const spAttack = pokemon['spAttack'];
         const spDefense = pokemon['spDefense'];
-        const moves = pokemon['moves'];
+        const captureRate = pokemon['captureRate'];
         %>
       <tr class="mb-2"> 
-        <td><%= pokemon['Id']%></td>
+        <td style="text-align:center"><%= pokemon['id']%></td>
         <td>
-            <!-- <a href="/courses/show/<%=course._id %>"> -->
-            <%=  pokemon['name'] %>
-            <!-- </a> -->
+            <a href="/pokemon/show/<%=pokemon._id %>">
+                <%=  pokemon['name'] %>
+
+            </a>
         </td>
 
         <td>
-            <%= pokemon['Type1'] %>, <%= pokemon['Type2'] %>
+            <% if (type1 != "None") { %>
+                <%= pokemon['type1'] %>                
+            <% } %>
+            <% if (type2 != "None") { %>
+                <br><%= pokemon['type2'] %>
+            <% } %>
         </td>
 
-        <td>
+        <td >
             <%=pokemon['category'] %>
         </td>
-
-        <td>
+        <td style="text-align:center">
+            <%=pokemon['hp']%>
+        </td>
+        <td style="text-align:center">
             <%=pokemon['attack']%>
         </td>
-        <td>
+        <td style="text-align:center">
             <%=pokemon['defense']%>
         </td>
-        <td>
+        <td style="text-align:center">
             <%=pokemon['spAttack']%>
         </td>
-        <td>
+        <td style="text-align:center">
             <%=pokemon['spDefense']%>
         </td>
-        <td>
-            <%=pokemon['moves']%>
+        <td style="text-align:center">
+            <%=pokemon['captureRate']%>
         </td>
-         <!-- <%= JSON.stringify(course.times) %> <br> -->
     </tr>
     <% } %>
     </tbody>
