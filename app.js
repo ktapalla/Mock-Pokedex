@@ -146,8 +146,28 @@ app.get('/pokemon/byType/:type',
   async (req,res,next) => {
     const type = req.params.type
     const pokemons = await Pokemon.find({ $or : [{type1: {$regex: type, $options: 'i'}}, {type2: {$regex: type, $options: 'i'}}]}).sort({id:1})
-    res.locals.courses = courses
-    res.render('courselist')
+    res.locals.pokemons = pokemons
+    res.render('searchlist')
+  } 
+)
+
+app.post('/pokemon/byCategory',
+  // show list of Pokemons of a specific type
+  async (req,res,next) => {
+    const {category} = req.body;
+    const pokemons = await Pokemon.find({ category : {$regex: category, $options: 'i'}}).sort({id:1})
+    res.locals.pokemons = pokemons
+    res.render('searchlist')
+  }
+)
+
+app.get('/pokemon/byCategory/:category',
+  // show a list of Pokemons by a given type
+  async (req,res,next) => {
+    const category = req.params.category
+    const pokemons = await Pokemon.find({ category : {$regex: category, $options: 'i'}}).sort({id:1})
+    res.locals.pokemons = pokemons
+    res.render('searchlist')
   } 
 )
 
