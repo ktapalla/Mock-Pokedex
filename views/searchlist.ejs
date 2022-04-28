@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped mt-4">
     <thead>
         <tr>
-            <th style="text-align:center">Pokemon #</th>
+            <th style="text-align:center">Pokedex #</th>
             <th style="text-align:center">Name</th>
             <th style="text-align:center">Type(s)</th>
             <th style="text-align:center">Category</th>
@@ -31,7 +31,7 @@
       <tr class="mb-2"> 
         <td style="text-align:center"><%= pokemon['id']%></td>
         <td>
-            <a href="/pokemon/show/<%=pokemon._id %>">
+            <a href="/pokemon/show/<%=pokemon.id %>">
                 <%=  pokemon['name'] %>
 
             </a>

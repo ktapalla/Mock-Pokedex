@@ -132,20 +132,21 @@ app.get('/upsertDB',
 )
 
 app.post('/pokemon/show',
-  // show list of Pokemons of a specific type
+  // show data for a specific pokemon
   async (req,res,next) => {
     const {name} = req.body;
-    const pokemons = await Pokemon.find({ name : {$regex: name, $options: 'i'}}).sort({id:1})
+    const pokemon = await Pokemon.findOne({ name : {$regex: name, $options: 'i'}})
     res.locals.pokemon = pokemon
     res.render('pokemon')
   }
 )
 
+
 app.get('/pokemon/show/:name',
   // show a list of Pokemons by a given type
   async (req,res,next) => {
     const name = req.params.name
-    const pokemons = await Pokemon.find({ name : {$regex: name, $options: 'i'}}).sort({id:1})
+    const pokemon = await Pokemon.findOne({ name : {$regex: name, $options: 'i'}})
     res.locals.pokemon = pokemon
     res.render('pokemon')
   } 
