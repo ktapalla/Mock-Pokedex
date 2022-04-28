@@ -1,0 +1,83 @@
+
+<% for (pokemon of pokemons) { 
+    const Id = pokemon['Id'];
+        const name = pokemon['name'];
+        const Type1 = pokemon['Type1'];
+        const Type2 = pokemon['Type2'];
+        const category = pokemon['category'];
+%>
+    <ul>
+        <li><strong><%=  pokemon['Id'] %> <%=  pokemon['name'] %> - </strong></li>
+    </ul>
+    <br>
+<% } %>
+<hr>
+<table class="sortable table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Pokemon Number</th>
+            <th>Name</th>
+            <th>Types</th>
+            <th>Category</th>
+            <th>HP</th>
+            <th>Attack</th>
+            <th>Defense</th>
+            <th>Sp. Attack</th>
+            <th>Sp. Defense</th>
+            <th>Moves</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <% for (pokemon of pokemons) {
+        const Id = pokemon['Id'];
+        const name = pokemon['name'];
+        const Type1 = pokemon['Type1'];
+        const Type2 = pokemon['Type2'];
+        const category = pokemon['category'];
+        const hp = pokemon['hp'];
+        const attack = pokemon['attack'];
+        const defense = pokemon['defense'];
+        const spAttack = pokemon['spAttack'];
+        const spDefense = pokemon['spDefense'];
+        const moves = pokemon['moves'];
+        %>
+      <tr class="mb-2"> 
+        <td><%= pokemon['Id']%></td>
+        <td>
+            <!-- <a href="/courses/show/<%=course._id %>"> -->
+            <%=  pokemon['name'] %>
+            <!-- </a> -->
+        </td>
+
+        <td>
+            <%= pokemon['Type1'] %>, <%= pokemon['Type2'] %>
+        </td>
+
+        <td>
+            <%=pokemon['category'] %>
+        </td>
+
+        <td>
+            <%=pokemon['attack']%>
+        </td>
+        <td>
+            <%=pokemon['defense']%>
+        </td>
+        <td>
+            <%=pokemon['spAttack']%>
+        </td>
+        <td>
+            <%=pokemon['spDefense']%>
+        </td>
+        <td>
+            <%=pokemon['moves']%>
+        </td>
+         <!-- <%= JSON.stringify(course.times) %> <br> -->
+    </tr>
+    <% } %>
+    </tbody>
+</table>
+
+ <pre>
+        <%= JSON.stringify(pokemons,null,5) %> 
+</pre> 
