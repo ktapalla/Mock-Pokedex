@@ -23,7 +23,7 @@ const Pokemon = require('./models/Pokemon')
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const pokedex = require('./public/data/pokedex.json')
+const pokemons = require('./public/data/pokedex.json')
 
 
 // *********************************************************** //
@@ -105,9 +105,6 @@ app.get("/", (req, res, next) => {
   res.render("index");
 });
 
-app.get("/about", (req, res, next) => {
-  res.render("about");
-});
 
 
 /* ************************
@@ -119,15 +116,18 @@ app.get("/about", (req, res, next) => {
 app.get('/upsertDB',
   async (req,res,next) => {
     //await Course.deleteMany({})
-    for (course of courses){
-      const {subject,coursenum,section,term,strTimes}=course;
-      const num = getNum(coursenum);
-      course.strTimes = strTimes 
-      course.num=num
-      course.suffix = coursenum.slice(num.length)
-      await Course.findOneAndUpdate({subject,coursenum,section,term,strTimes},course,{upsert:true})
+    for (pokemon of pokemons){
+      const {
+        Id,name,Type1,Type2,abilities,category,height,weight,
+        captureRate,eggSteps,expGroup,total,hp,attack,defense,
+        spAttack,spDefense,speed,moves
+      }=pokemon;
+      await Pokemon.findOneAndUpdate(
+        {Id,name,Type1,Type2,abilities,category,height,weight,
+          captureRate,eggSteps,expGroup,total,hp,attack,defense,
+          spAttack,spDefense,speed,moves},pokemon,{upsert:true})
     }
-    const num = await Course.find({}).count();
+    const num = await Pokemon.find({}).count();
     res.send("data uploaded: "+num)
   }
 )
