@@ -17,7 +17,7 @@ var pokemonSchema = Schema( {
     eggSteps: Number,
     expGroup: String,
     total: Number,
-    np: Number,
+    hp: Number,
     attack: Number,
     defense: String,
     spAttack: Number,

@@ -132,6 +132,17 @@ app.get('/upsertDB',
   }
 )
 
+app.post('/pokemon/byType',
+  // show list of courses in a given subject
+  async (req,res,next) => {
+    const {type} = req.body;
+    const pokemonsT1 = await Pokemon.find({ $or : [{Type1: type}, {Type2: type}],}).sort({id:1})
+    res.locals.pokemons = pokemonsT1 
+    //res.json(courses)
+    res.render('searchlist')
+  }
+)
+
 
 app.use(isLoggedIn)
 
