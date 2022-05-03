@@ -1,6 +1,6 @@
 
 
-<!-- WHILE LOOPS INSTEAD OF FOR LOOPS B/C FOR LOOPS MAKE EVERYTHING VISIBLE AT THE SAME TIME -->
+<!-- WHILE LOOPS INSTEAD OF FOR LOOPS FOR CAROUSELS B/C FOR LOOPS MAKE EVERYTHING VISIBLE AT THE SAME TIME -->
 
     <!-- PERSONAL DATA PAGE W SORTED ACCORDING TO POKEMON ASSIGNED AS SEEN[0], CAUGHT[1], FAVORITE[2] W/CHECKBOXES  -->
         <!-- Row[0] of personal data carousels -->
@@ -115,4 +115,43 @@
 
         </div>
                 
+        <!-- Row[1] of personal data lists -->
+        <div class="row">
+            <!-- Column[0] marked as 'seen' list -->
+            <div class="col p-2 p-t5">
+                <ul >
+                    <% for (pokemon of seenPokemon){ %>
+                        <li class="m-1 p-1">
+                            Pokemon #<%= pokemon.id %> - <a href="/pokemon/byName/<%=pokemon.name%>" style="color:red"> <strong> <%= pokemon.name %> </strong></a>
+                        </li>
+                    
+                    <% } %>
+                </ul>
+            </div>
 
+            <!-- Column[1] marked as 'caught' list -->
+            <div class="col p-2 p-t5">
+                <ul >
+                    <% for (pokemon of caughtPokemon){ %>
+                        <li class="m-1 p-1">
+                            Pokemon #<%= pokemon.id %> - <a href="/pokemon/byName/<%=pokemon.name%>" style="color:blue"> <strong> <%= pokemon.name %> </strong></a>
+                        </li>
+                    
+                    <% } %>
+                </ul>
+            </div>
+            
+
+            <!-- Column[2] marked as 'favorite' list -->
+            <div class="col p-2 p-t5">
+                <ul >
+                    <% for (pokemon of favoritePokemon){ %>
+                        <li class="m-1 p-1">
+                            Pokemon #<%= pokemon.id %> - <a href="/pokemon/byName/<%=pokemon.name%>" style="color:rgb(207, 207, 114)"> <strong> <%= pokemon.name %> </strong></a>
+                        </li>
+                    
+                    <% } %>
+                </ul>
+            </div>
+
+        </div>
