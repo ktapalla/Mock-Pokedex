@@ -128,7 +128,7 @@ app.get('/upsertDB',
       await Pokemon.findOneAndUpdate(
         {id,name,type1,type2,abilities,category,height,weight,
           captureRate,eggSteps,expGroup,total,hp,attack,defense,
-          spAttack,spDefense,speed,moves,seen,caught,favorite},
+          spAttack,spDefense,speed,moves,},
           pokemon,{upsert:true})
     }
     const num = await Pokemon.find({}).count();
@@ -262,7 +262,7 @@ isLoggedIn,
       } else {
         await PersonalData.findOneAndUpdate({userId,pokemonName,},{seen,caught,favorite},{upsert:true})
       }
-      // res.redirect(req.get('referer'))
+      // res.redirect()
     } catch(e){
       next(e)
     } 
