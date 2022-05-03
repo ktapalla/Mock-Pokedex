@@ -1,34 +1,48 @@
-<div class="bg-light m-5 p-2 border border-danger border-2">
-    <div class="mb-2">
+<div class="bg-light m-2 p-2 border border-danger border-2">
+    <div class="m-2 p-2">
         <h1 style="text-align:center">
             <strong><%= pokemon['name'] %> </strong>
         </h1>
         
     </div>
-    <div class="mb-2">
-        <strong>Pokedex #: </strong><%= pokemon.id %> <br>
-        <strong>Type(s): </strong><%= pokemon['type1'] %>              
-        <% if (pokemon['type2'] != "None") { %>
-            & <%= pokemon['type2'] %>
-        <% } %>
+    <div class="row m-5 border border-primary border-2" >
+        <div class="col m-2 p-2"> 
+            <strong>Pokedex #: </strong><%= pokemon.id %> <br>
+            <strong>Type(s): </strong><%= pokemon['type1'] %>              
+            <% if (pokemon['type2'] != "None") { %>
+                & <%= pokemon['type2'] %>
+            <% } %>
+        </div>
+        <div class="col m-2 p-2">
+            <strong>HP: </strong><%= pokemon.hp %> <br>
+            <strong>Speed: </strong><%= pokemon.speed %> <br>
+        </div>
+        <div class="col m-2 p-2">
+            <strong>Attack: </strong><%= pokemon.attack %> <br>
+            <strong>Defense: </strong><%= pokemon.defense %> <br>
+        </div>
+        <div class="col m-2 p-2">
+            <strong>Sp. Attack: </strong><%= pokemon.spAttack %> <br>
+            <strong>Sp. Defense: </strong><%= pokemon.spDefense %> <br>
+        </div>
     </div>
-    <div class="mb-2">
-        <strong>HP: </strong><%= pokemon.hp %> <br>
-        <strong>Speed: </strong><%= pokemon.speed %> <br>
-    </div>
-    <div class="mb-2">
-        <strong>Attack: </strong><%= pokemon.attack %> <br>
-        <strong>Defense: </strong><%= pokemon.defense %> <br>
-    </div>
-    <div class="mb-2">
-        <strong>Sp. Attack: </strong><%= pokemon.spAttack %> <br>
-        <strong>Sp. Defense: </strong><%= pokemon.spDefense %> <br>
-    </div>
-    <div class="dropdown p-3">
+    <div class="p-3">
         <strong>Moves: </strong> <br>
         <% for (move in pokemon.moves) { %> 
             <%= move %> <br>
         <% } %>
+    </div>
+    <div>
+        <strong>Mark As:</strong>
+        <form method="post" action="/pokemon/addData/<%= pokemon.name %>">
+            <input type="checkbox" id="<%= pokemon.name %>Seen" name="seen" value="seen">
+            <label for="<%= pokemon.name %>Seen">Seen</label>
+            <input type="checkbox" id="<%= pokemon.name %>Caught" name="caught" value="caught">
+            <label for="<%= pokemon.name %>Caught">Caught</label>
+            <input type="checkbox" id="<%= pokemon.name %>Favorite" name="favorite" value="favorite">
+            <label for="<%= pokemon.name %>Favorite">Favorite</label>
+            <input type="submit" value="Set" class="m-2">
+        </form>
     </div>
 
 </div>

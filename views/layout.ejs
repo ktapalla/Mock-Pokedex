@@ -35,8 +35,15 @@
             </li>
             <% } else { %>
 
-              <li class="nav-item">
-                <a class="nav-link" href="/myData">My Data</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dataDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">My Data</a>
+                <ul class="dropdown-menu" aria-labelledby="dataDropdown">
+                  <li><a class="dropdown-item" href="/pokemon/myData">All Data</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a class="dropdown-item" href="/pokemon/myData/seen">Seen Pokemon</a></li>
+                  <li><a class="dropdown-item" href="/pokemon/myData/caught">Caught Pokemon</a></li>
+                  <li><a class="dropdown-item" href="/pokemon/myData/favorite">Favorite Pokemon</a></li>
+                </ul>
               </li>
               
               <li class="nav-item">

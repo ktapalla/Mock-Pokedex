@@ -23,7 +23,7 @@ var pokemonSchema = Schema( {
     spAttack: Number,
     spDefense: Number,
     speed: Number,
-    moves: Mixed
+    moves: Mixed,
 } )
 
 module.exports = mongoose.model( 'Pokemon', pokemonSchema );

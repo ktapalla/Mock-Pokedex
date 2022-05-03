@@ -20,6 +20,8 @@ const axios = require("axios")
 //  Loading models
 // *********************************************************** //
 const Pokemon = require('./models/Pokemon')
+const PersonalData = require('./models/PersonalData')
+
 
 // *********************************************************** //
 //  Loading JSON datasets
@@ -33,7 +35,9 @@ const pokemons = require('./public/data/pokedex.json')
 
 const mongoose = require( 'mongoose' );
 //const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
-const mongodb_URI = process.env.mongodb_URI
+const mongodb_URI = 'mongodb+srv://cs103a:Spring2022@cluster0.hb11m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+// const mongodb_URI = process.env.mongodb_URI
+
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings 
@@ -119,12 +123,13 @@ app.get('/upsertDB',
       const {
         id,name,type1,type2,abilities,category,height,weight,
         captureRate,eggSteps,expGroup,total,hp,attack,defense,
-        spAttack,spDefense,speed,moves
+        spAttack,spDefense,speed,moves,
       }=pokemon;
       await Pokemon.findOneAndUpdate(
         {id,name,type1,type2,abilities,category,height,weight,
           captureRate,eggSteps,expGroup,total,hp,attack,defense,
-          spAttack,spDefense,speed,moves},pokemon,{upsert:true})
+          spAttack,spDefense,speed,moves,seen,caught,favorite},
+          pokemon,{upsert:true})
     }
     const num = await Pokemon.find({}).count();
     res.send("data uploaded: "+num)
@@ -144,7 +149,7 @@ app.post('/pokemon/byName',
 app.get('/pokemon/byName/:name',
   // show a list of Pokemons by a given type
   async (req,res,next) => {
-    const {name} = req.params
+    const {name } = req.params
     const pokemon = await Pokemon.findOne({ name : {$regex: name, $options: 'i'}})
     res.locals.pokemon = pokemon
     res.render('pokemon')
@@ -172,19 +177,20 @@ app.get('/pokemon/byPokedexNum/:id',
 )
 
 app.post('/pokemon/byType',
-  // show list of Pokemons of a specific type
+  // show list of Pokemons of a specific type 
   async (req,res,next) => {
     const {type} = req.body;
     const pokemons = await Pokemon.find({ $or : [{type1: {$regex: type, $options: 'i'}}, {type2: {$regex: type, $options: 'i'}}]}).sort({id:1})
     res.locals.pokemons = pokemons
     res.render('searchlist')
   }
-)
-
+    )
+    
 app.get('/pokemon/byType/:type',
   // show a list of Pokemons by a given type
   async (req,res,next) => {
     const {type} = req.params
+    // const {seen, caught, favorite} = req.body
     const pokemons = await Pokemon.find({ $or : [{type1: {$regex: type, $options: 'i'}}, {type2: {$regex: type, $options: 'i'}}]}).sort({id:1})
     res.locals.pokemons = pokemons
     res.render('searchlist')
@@ -229,6 +235,39 @@ app.get('/pokemon/byCaptureRate/:captureRate',
     res.locals.pokemons = pokemons
     res.render('searchlist')
   } 
+)
+
+app.post('/pokemon/addData/:pokemonName',
+isLoggedIn,
+  async (req,res,next) => { 
+    try {
+      // const {seen, caught, favorite} = req.params
+      const pokemonName = req.params.pokemonName
+      let userId = res.locals.user._id
+      let {seen,caught,favorite} = req.body
+      if (seen == null) {
+        seen = false
+      }
+      if (caught == null) {
+        caught = false
+      }
+      if (favorite == null) {
+        favorite = false
+      }
+      // check to make sure it's not already loaded
+      const lookup = await PersonalData.find({userId,pokemonName,})
+      if (lookup.length==0){
+        const pData= new PersonalData({userId,pokemonName,seen,caught,favorite,})
+        await pData.save()
+      } else {
+        await PersonalData.findOneAndUpdate({userId,pokemonName,},{seen,caught,favorite},{upsert:true})
+      }
+      // res.redirect(req.get('referer'))
+    } catch(e){
+      next(e)
+    } 
+  }
+
 )
 
 app.use(isLoggedIn)
@@ -291,6 +330,7 @@ function onError(error) {
       throw error;
   }
 }
+
 
 server.on("error", onError);
 
