@@ -1,3 +1,118 @@
-<% for (pokemon of pokemons) {
 
-    <%}$>
+
+<!-- WHILE LOOPS INSTEAD OF FOR LOOPS B/C FOR LOOPS MAKE EVERYTHING VISIBLE AT THE SAME TIME -->
+
+    <!-- PERSONAL DATA PAGE W SORTED ACCORDING TO POKEMON ASSIGNED AS SEEN[0], CAUGHT[1], FAVORITE[2] W/CHECKBOXES  -->
+        <!-- Row[0] of personal data carousels -->
+        <div class="row">
+            <!-- Column[0] marked as 'seen' carousel -->
+            <div class="col align-middle">
+            <h2 class="text-color-danger">Your Seen Pokemon:</h2>
+                <div id="seenCarousel" class="carousel slide w-100 p-2 p-t5 border border-danger" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
+                        <% let sInd = 1 %>
+                        <% while (sInd < seenPokemon.length) { %>
+                                <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="<%=sInd%>" class="bg-success"aria-label="Slide <%=sInd+1%>"></button>
+                            <% sInd += 1 %>
+                        <% } %>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active justify-content-center">
+                            <img src="<%=seenPokemon[0].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[0].name%>">
+                        </div>
+                        <% sInd = 1 %>
+                        <% while (sInd < seenPokemon.length) { %>
+                            <div class="carousel-item">
+                                <img src="<%=seenPokemon[sInd].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[sInd].name%>">
+                            </div>
+                            <% sInd += 1 %>
+                        <% } %>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#seenCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#seenCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Column[1] marked as 'caught' carousel -->
+            <div class="col align-middle">
+                <h2 class="text-color-danger">Your Caught Pokemon:</h2>
+                    <div id="caughtCarousel" class="carousel slide w-100  p-2 p-t5 border border-primary" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
+                            <% let cInd = 1 %>
+                            <% while (cInd < caughtPokemon.length) { %>
+                                    <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="<%=cInd%>" class="bg-success" aria-label="Slide <%=cInd+1%>"></button>
+                                <% cInd += 1 %>
+                            <% } %>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active justify-content-center">
+                                <img src="<%=caughtPokemon[0].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[0].name%>">
+                            </div>
+                            <% cInd = 1 %>
+                            <% while (cInd < caughtPokemon.length) { %>
+                                <div class="carousel-item">
+                                    <img src="<%=caughtPokemon[cInd].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[cInd].name%>">
+                                </div>
+                                <% cInd += 1 %>
+                            <% } %>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#caughtCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#caughtCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            <!-- Column[2] marked as 'favorite' carousel -->
+            <div class="col align-middle">
+                <h2 class="text-color-danger">Your Favorite Pokemon:</h2>
+                    <div id="favoriteCarousel" class="carousel slide w-100 p-2 p-t5 border border-warning" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#favoriteCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
+                            <% let fInd = 1 %>
+                            <% while (fInd < favoritePokemon.length) { %>
+                                    <button type="button" data-bs-target="#favoriteCarousel" data-bs-slide-to="<%=fInd%>" class="bg-success" aria-label="Slide <%=fInd+1%>"></button>
+                                <% fInd += 1 %>
+                            <% } %>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active justify-content-center">
+                                <img src="<%=favoritePokemon[0].imgURL%>" class="d-block w-100" alt="<%= favoritePokemon[0].name%>">
+                            </div>
+                            <% fInd = 1 %>
+                            <% while (fInd < favoritePokemon.length) { %>
+                                <div class="carousel-item">
+                                    <img src="<%=favoritePokemon[fInd].imgURL%>" class="d-block w-100" alt="<%= favoritePokemon[fInd].name%>">
+                                </div>
+                                <% fInd += 1 %>
+                            <% } %>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#favoriteCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#favoriteCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+                
+

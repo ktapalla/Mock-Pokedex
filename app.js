@@ -125,10 +125,12 @@ app.get('/upsertDB',
         captureRate,eggSteps,expGroup,total,hp,attack,defense,
         spAttack,spDefense,speed,moves,
       }=pokemon;
+      const imgNum = id + ".png" 
+      const imgURL = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + imgNum
       await Pokemon.findOneAndUpdate(
         {id,name,type1,type2,abilities,category,height,weight,
           captureRate,eggSteps,expGroup,total,hp,attack,defense,
-          spAttack,spDefense,speed,moves,},
+          spAttack,spDefense,speed,moves,imgURL},
           pokemon,{upsert:true})
     }
     const num = await Pokemon.find({}).count();
@@ -241,7 +243,6 @@ app.post('/pokemon/addData/:pokemonName',
 isLoggedIn,
   async (req,res,next) => { 
     try {
-      // const {seen, caught, favorite} = req.params
       const pokemonName = req.params.pokemonName
       let userId = res.locals.user._id
       let {seen,caught,favorite} = req.body
@@ -257,8 +258,8 @@ isLoggedIn,
       // check to make sure it's not already loaded
       const lookup = await PersonalData.find({userId,pokemonName,})
       if (lookup.length==0){
-        const pData= new PersonalData({userId,pokemonName,seen,caught,favorite,})
-        await pData.save()
+        const personalData= new PersonalData({userId,pokemonName,seen,caught,favorite,})
+        await personalData.save()
       } else {
         await PersonalData.findOneAndUpdate({userId,pokemonName,},{seen,caught,favorite},{upsert:true})
       }
@@ -269,6 +270,33 @@ isLoggedIn,
   }
 
 )
+
+
+app.get('/pokemon/myData',
+  // show the current user's data
+  isLoggedIn,
+  async (req,res,next) => {
+    try{
+      const userId = res.locals.user._id;
+      const seenNames = 
+         (await PersonalData.find({userId, seen:"seen"}))
+                        .map(x => x.pokemonName)
+      res.locals.seenPokemon = await Pokemon.find({name:{$in: seenNames}})
+      const caughtNames = 
+         (await PersonalData.find({userId, caught:"caught"}))
+                        .map(x => x.pokemonName)
+      res.locals.caughtPokemon = await Pokemon.find({name:{$in: caughtNames}})
+      const favoriteNames = 
+         (await PersonalData.find({userId, favorite:"favorite"}))
+                        .map(x => x.pokemonName)
+      res.locals.favoritePokemon = await Pokemon.find({name:{$in: favoriteNames}})
+      res.render('personaldata')
+    } catch(e){
+      next(e)
+    }
+  }
+)
+
 
 app.use(isLoggedIn)
 

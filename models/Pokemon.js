@@ -24,6 +24,7 @@ var pokemonSchema = Schema( {
     spDefense: Number,
     speed: Number,
     moves: Mixed,
+    imgURL: String
 } )
 
 module.exports = mongoose.model( 'Pokemon', pokemonSchema );
