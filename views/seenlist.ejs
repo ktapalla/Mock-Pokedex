@@ -15,7 +15,6 @@
                 <a href="/pokemon/byName/<%=seenPokemon[0].name%>" data-target="<%=seenPokemon[0].name%>Img">
                     <img src="<%=seenPokemon[0].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[0].name%>" id="<%=seenPokemon[0].name%>Img">
                 </a>
-            
             </div>
             <% sInd = 1 %>
             <% while (sInd < seenPokemon.length) { %>
@@ -23,7 +22,6 @@
                     <a href="/pokemon/byName/<%=seenPokemon[sInd].name%>" data-target="<%=seenPokemon[sInd].name%>Img">
                         <img src="<%=seenPokemon[sInd].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[sInd].name%>" id="<%=seenPokemon[sInd].name%>Img">
                     </a>
-                
                 </div>
                 <% sInd += 1 %>
             <% } %>
