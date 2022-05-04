@@ -9,6 +9,7 @@
             <div class="col align-middle">
             <h2 class="text-color-danger">Your Seen Pokemon:</h2>
                 <div id="seenCarousel" class="carousel slide w-100 p-2 p-t5 border border-danger" data-bs-ride="carousel">
+                    <!-- indicators -->
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
                         <% let sInd = 1 %>
@@ -17,6 +18,7 @@
                             <% sInd += 1 %>
                         <% } %>
                     </div>
+                    <!-- images -->
                     <div class="carousel-inner">
                         <div class="carousel-item active justify-content-center">
                             <img src="<%=seenPokemon[0].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[0].name%>">
@@ -28,15 +30,18 @@
                             </div>
                             <% sInd += 1 %>
                         <% } %>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#seenCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#seenCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
+                    <!-- buttons -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#seenCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#seenCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+
                 </div>
             </div>
 
@@ -127,6 +132,7 @@
                     
                     <% } %>
                 </ul>
+                <a class="button" href="/pokemon/myData/seen" class="m-4 ">View Your Seen Pokemon</a>
             </div>
 
             <!-- Column[1] marked as 'caught' list -->
@@ -139,6 +145,7 @@
                     
                     <% } %>
                 </ul>
+                <a href="/pokemon/myData/caught"  class="m-4" role="button">View Your Caught Pokemon</a>
             </div>
             
 
@@ -152,6 +159,6 @@
                     
                     <% } %>
                 </ul>
+                <a href="/pokemon/myData/favorite" class="m-4 ">View Your Favorite Pokemon</a>
             </div>
-
         </div>
