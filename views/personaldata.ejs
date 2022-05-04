@@ -6,7 +6,7 @@
         <!-- Row[0] of personal data carousels -->
         <div class="row">
             <!-- Column[0] marked as 'seen' carousel -->
-            <div class="col align-middle">
+            <div class="col align-middle m-2 p-2">
             <h2 class="text-color-danger">Your Seen Pokemon:</h2>
             <% if (seenPokemon.length > 0) { %>    
                 <div id="seenCarousel" class="carousel slide w-100 p-2 p-t5 border border-danger" data-bs-ride="carousel">
@@ -59,7 +59,7 @@
 
 
             <!-- Column[1] marked as 'caught' carousel -->
-            <div class="col align-middle">
+            <div class="col align-middle m-2 p-2">
                 <h2 class="text-color-danger">Your Caught Pokemon:</h2>
                 <% if (caughtPokemon.length > 0) { %>    
                     <div id="caughtCarousel" class="carousel slide w-100  p-2 p-t5 border border-primary" data-bs-ride="carousel">
@@ -109,7 +109,7 @@
 
 
             <!-- Column[2] marked as 'favorite' carousel -->
-            <div class="col align-middle">
+            <div class="col align-middle m-2 p-2">
                 <h2 class="text-color-danger">Your Favorite Pokemon:</h2>
                 <% if (favoritePokemon.length > 0) { %>    
                     <div id="favoriteCarousel" class="carousel slide w-100 p-2 p-t5 border border-warning" data-bs-ride="carousel">
@@ -165,7 +165,9 @@
                 <ul >
                     <% for (pokemon of seenPokemon){ %>
                         <li class="m-1 p-1">
+                            <a href="/pokemon/myData/seen/remove/<%=pokemon.name%>">X</a>
                             Pokemon #<%= pokemon.id %> - <a href="/pokemon/byName/<%=pokemon.name%>" style="color:red"> <strong> <%= pokemon.name %> </strong></a>
+                            
                         </li>
                     
                     <% } %>
@@ -180,6 +182,7 @@
                 <ul >
                     <% for (pokemon of caughtPokemon){ %>
                         <li class="m-1 p-1">
+                            <a href="/pokemon/myData/caught/remove/<%=pokemon.name%>">X</a>
                             Pokemon #<%= pokemon.id %> - <a href="/pokemon/byName/<%=pokemon.name%>" style="color:blue"> <strong> <%= pokemon.name %> </strong></a>
                         </li>
                     
@@ -196,6 +199,7 @@
                 <ul >
                     <% for (pokemon of favoritePokemon){ %>
                         <li class="m-1 p-1">
+                            <a href="/pokemon/myData/favorite/remove/<%=pokemon.name%>">X</a>
                             Pokemon #<%= pokemon.id %> - <a href="/pokemon/byName/<%=pokemon.name%>" style="color:rgb(207, 207, 114)"> <strong> <%= pokemon.name %> </strong></a>
                         </li>
                     
