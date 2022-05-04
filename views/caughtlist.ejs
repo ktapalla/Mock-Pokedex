@@ -1,40 +1,40 @@
-<h1 class="text-color-danger m-3 p-3" style="text-align:center">Seen Pokemon</h1><hr>
-    <div id="seenCarousel"  class="carousel slide mx-auto mt-3 w-50 pt-3 border border-danger" data-bs-ride="carousel" >
+<h1 class="text-color-danger m-3 p-3" style="text-align:center">Caught Pokemon</h1><hr>
+    <div id="caughtCarousel"  class="carousel slide mx-auto mt-3 w-50 pt-3 border border-danger" data-bs-ride="carousel" >
         <!-- indicators -->
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
-            <% let sInd = 1 %>
-            <% while (sInd < seenPokemon.length) { %>
-                <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="<%=sInd%>" class="bg-success"aria-label="Slide <%=sInd+1%>"></button>
-                <% sInd += 1 %>
+            <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
+            <% let cInd = 1 %>
+            <% while (cInd < caughtPokemon.length) { %>
+                <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="<%=cInd%>" class="bg-success"aria-label="Slide <%=cInd+1%>"></button>
+                <% cInd += 1 %>
             <% } %>
         </div>
         <!-- images -->
         <div class="carousel-inner">
-            <div class="carousel-item active justify-content-center">
-                <a href="/pokemon/byName/<%=seenPokemon[0].name%>" data-target="<%=seenPokemon[0].name%>Img">
-                    <img src="<%=seenPokemon[0].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[0].name%>" id="<%=seenPokemon[0].name%>Img">
+            <div class="carousel-item active justify-content-center" >
+                <a href="/pokemon/byName/<%=caughtPokemon[0].name%>" data-target="<%=caughtPokemon[0].name%>Img">
+                    <img src="<%=caughtPokemon[0].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[0].name%>" id="<%=caughtPokemon[0].name%>Img">
                 </a>
             
             </div>
-            <% sInd = 1 %>
-            <% while (sInd < seenPokemon.length) { %>
+            <% cInd = 1 %>
+            <% while (cInd < caughtPokemon.length) { %>
                 <div class="carousel-item">
-                    <a href="/pokemon/byName/<%=seenPokemon[sInd].name%>" data-target="<%=seenPokemon[sInd].name%>Img">
-                        <img src="<%=seenPokemon[sInd].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[sInd].name%>" id="<%=seenPokemon[sInd].name%>Img">
+                    <a href="/pokemon/byName/<%=caughtPokemon[cInd].name%>" data-target="<%=caughtPokemon[cInd].name%>Img">
+                        <img src="<%=caughtPokemon[cInd].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[cInd].name%>" id="<%=caughtPokemon[cInd].name%>Img">
                     </a>
                 
                 </div>
-                <% sInd += 1 %>
+                <% cInd += 1 %>
             <% } %>
         </div>
         <!-- buttons -->
         <div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#seenCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#caughtCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#seenCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#caughtCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
             </button>
@@ -43,7 +43,7 @@
 
 
     <div class="d-flex flex-wrap overflow-scroll">
-        <% for (pokemon of seenPokemon) {%>
+        <% for (pokemon of caughtPokemon) {%>
             <div class="bg-light w-33 mx-auto m-2 p-2 border border-danger border-2">
                 
                 <div class="m-2 p-2">

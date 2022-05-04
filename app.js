@@ -314,6 +314,22 @@ app.get('/pokemon/myData/seen',
   }
 )
 
+app.get('/pokemon/myData/caught',
+  // show the current user's data
+  isLoggedIn,
+  async (req,res,next) => {
+    try{
+      const userId = res.locals.user._id;
+      const caughtNames = 
+         (await PersonalData.find({userId, caught:"caught"}))
+                        .map(x => x.pokemonName)
+      res.locals.caughtPokemon = await Pokemon.find({name:{$in: caughtNames}})
+      res.render('caughtlist')
+    } catch(e){
+      next(e)
+    }
+  }
+)
 
 
 app.use(isLoggedIn)
