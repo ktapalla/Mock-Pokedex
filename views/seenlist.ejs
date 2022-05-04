@@ -1,5 +1,5 @@
 <h1 class="text-color-danger m-3 p-3" style="text-align:center">Seen Pokemon</h1><hr>
-    <div id="seenCarousel"  class="carousel slide mx-auto mt-3 w-50 pt-3 border border-danger" data-bs-ride="carousel" >
+    <div id="seenCarousel"  class="carousel slide mx-auto m-4 w-50 pt-3 border border-danger border-3" data-bs-ride="carousel" >
         <!-- indicators -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
@@ -53,7 +53,7 @@
                 <a href="/pokemon/byName/<%=pokemon.name%>" >
                     <img class="image w-100" src="<%= pokemon.imgURL%>"></img>
                 </a>
-                <div class="row m-2 border border-primary border-2 overflow-scroll" >
+                <div class="row m-2 border border-success border-2 overflow-scroll" >
                     <div class="col m-1 p-1"> 
                         <strong style="font-size: smaller;">Pokedex #: </strong>
                         <span style="font-size: smaller;"> <%= pokemon.id %></span> <br>
