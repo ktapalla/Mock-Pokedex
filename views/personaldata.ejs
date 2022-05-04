@@ -8,6 +8,7 @@
             <!-- Column[0] marked as 'seen' carousel -->
             <div class="col align-middle">
             <h2 class="text-color-danger">Your Seen Pokemon:</h2>
+            <% if (seenPokemon.length > 0) { %>    
                 <div id="seenCarousel" class="carousel slide w-100 p-2 p-t5 border border-danger" data-bs-ride="carousel">
                     <!-- indicators -->
                     <div class="carousel-indicators">
@@ -45,15 +46,22 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-
-
                 </div>
+                <% } else { %>
+                    <div style="text-align: center;">
+                        <em>
+                            <br><br><br>
+                            No Data to Show. You have no Seen Pokemon. Mark Pokemon as Seen to include on this page.
+                        </em>
+                    </div>
+                <% } %>
             </div>
 
 
             <!-- Column[1] marked as 'caught' carousel -->
             <div class="col align-middle">
                 <h2 class="text-color-danger">Your Caught Pokemon:</h2>
+                <% if (caughtPokemon.length > 0) { %>    
                     <div id="caughtCarousel" class="carousel slide w-100  p-2 p-t5 border border-primary" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
@@ -88,13 +96,22 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                    <% } else { %>
+                        <div style="text-align: center;">
+                            <em>
+                                <br><br><br>
+                                No Data to Show. You have no Caught Pokemon. Mark Pokemon as Caught to include on this page.
+                            </em>
+                        </div>
+                    <% } %>
+            </div>
 
 
 
             <!-- Column[2] marked as 'favorite' carousel -->
             <div class="col align-middle">
                 <h2 class="text-color-danger">Your Favorite Pokemon:</h2>
+                <% if (favoritePokemon.length > 0) { %>    
                     <div id="favoriteCarousel" class="carousel slide w-100 p-2 p-t5 border border-warning" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#favoriteCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
@@ -130,13 +147,21 @@
                         </div>
                     </div>
                 </div>
-
+                <% } else { %>
+                    <div style="text-align: center;">
+                        <em>
+                            <br><br><br>
+                            No Data to Show. You have no Favorite Pokemon. Mark Pokemon as Favorite to include on this page.
+                        </em>
+                    </div>
+                <% } %>
         </div>
                 
         <!-- Row[1] of personal data lists -->
         <div class="row">
             <!-- Column[0] marked as 'seen' list -->
             <div class="col p-2 p-t5">
+                <% if (seenPokemon.length > 0) { %>    
                 <ul >
                     <% for (pokemon of seenPokemon){ %>
                         <li class="m-1 p-1">
@@ -146,10 +171,12 @@
                     <% } %>
                 </ul>
                 <a class="button" href="/pokemon/myData/seen" class="m-4 ">View Your Seen Pokemon</a>
+                <% } %>
             </div>
 
             <!-- Column[1] marked as 'caught' list -->
             <div class="col p-2 p-t5">
+                <% if (caughtPokemon.length > 0) { %>    
                 <ul >
                     <% for (pokemon of caughtPokemon){ %>
                         <li class="m-1 p-1">
@@ -159,11 +186,13 @@
                     <% } %>
                 </ul>
                 <a href="/pokemon/myData/caught"  class="m-4" role="button">View Your Caught Pokemon</a>
+                <% } %>
             </div>
             
 
             <!-- Column[2] marked as 'favorite' list -->
             <div class="col p-2 p-t5">
+                <% if (favoritePokemon.length > 0) { %>    
                 <ul >
                     <% for (pokemon of favoritePokemon){ %>
                         <li class="m-1 p-1">
@@ -173,5 +202,6 @@
                     <% } %>
                 </ul>
                 <a href="/pokemon/myData/favorite" class="m-4 ">View Your Favorite Pokemon</a>
+                <% } %>
             </div>
         </div>
