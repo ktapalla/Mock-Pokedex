@@ -331,6 +331,24 @@ app.get('/pokemon/myData/caught',
   }
 )
 
+app.get('/pokemon/myData/favorite',
+  // show the current user's data
+  isLoggedIn,
+  async (req,res,next) => {
+    try{
+      const userId = res.locals.user._id;
+      const favoriteNames = 
+         (await PersonalData.find({userId, favorite:"favorite"}))
+                        .map(x => x.pokemonName)
+      res.locals.favoritePokemon = await Pokemon.find({name:{$in: favoriteNames}})
+      res.render('favlist')
+    } catch(e){
+      next(e)
+    }
+  }
+)
+
+
 
 app.use(isLoggedIn)
 
