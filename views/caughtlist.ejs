@@ -1,5 +1,5 @@
 <h1 class="text-color-primary m-3 p-3" style="text-align:center">Caught Pokemon</h1><hr>
-    <div id="caughtCarousel"  class="carousel slide mx-auto mt-3 w-50 pt-3 border border-primary border-3" data-bs-ride="carousel" >
+    <div id="caughtCarousel"  class="carousel slide mx-auto m-4 w-50 pt-3 border border-primary border-3" data-bs-ride="carousel" >
         <!-- indicators -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
@@ -50,9 +50,12 @@
                     </h1>
                     
                 </div>
-                <a href="/pokemon/byName/<%=pokemon.name%>" >
-                    <img class="image w-100" src="<%= pokemon.imgURL%>"></img>
-                </a>
+                <div class="w-50 mx-auto">
+                    <a href="/pokemon/byName/<%=pokemon.name%>" >
+                        <img class="image w-100" src="<%= pokemon.imgURL%>"></img>
+                    </a>
+
+                </div>
                 <div class="row m-2 border border-success border-2 overflow-scroll" >
                     <div class="col m-1 p-1"> 
                         <strong style="font-size: smaller;">Pokedex #: </strong>
