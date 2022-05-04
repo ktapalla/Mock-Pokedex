@@ -139,7 +139,7 @@ app.get('/upsertDB',
 )
 
 app.post('/pokemon/byName',
-  // show data for a specific pokemon
+  // show data for a pokemon w/ a specific name
   async (req,res,next) => {
     const {name} = req.body;
     const pokemon = await Pokemon.findOne({ name : {$regex: name, $options: 'i'}})
@@ -149,7 +149,7 @@ app.post('/pokemon/byName',
 )
 
 app.get('/pokemon/byName/:name',
-  // show a list of Pokemons by a given type
+  // show data for a pokemon w/ a specific name
   async (req,res,next) => {
     const {name } = req.params
     const pokemon = await Pokemon.findOne({ name : {$regex: name, $options: 'i'}})
@@ -159,7 +159,7 @@ app.get('/pokemon/byName/:name',
 )
 
 app.post('/pokemon/byPokedexNum',
-  // show data for a specific pokemon
+  // show data for a pokemon w/ a specific pokedex number
   async (req,res,next) => {
     const {pokedexNum} = req.body;
     const pokemon = await Pokemon.findOne({id:pokedexNum})
@@ -169,7 +169,7 @@ app.post('/pokemon/byPokedexNum',
 )
 
 app.get('/pokemon/byPokedexNum/:id',
-  // show a list of Pokemons by a given type
+  // show data for a pokemon w/ a specific pokedex number
   async (req,res,next) => {
     const pokedexNum = req.params.id
     const pokemon = await Pokemon.findOne({id:pokedexNum})
@@ -189,10 +189,9 @@ app.post('/pokemon/byType',
     )
     
 app.get('/pokemon/byType/:type',
-  // show a list of Pokemons by a given type
+  // show list of Pokemons of a specific type 
   async (req,res,next) => {
     const {type} = req.params
-    // const {seen, caught, favorite} = req.body
     const pokemons = await Pokemon.find({ $or : [{type1: {$regex: type, $options: 'i'}}, {type2: {$regex: type, $options: 'i'}}]}).sort({id:1})
     res.locals.pokemons = pokemons
     res.render('searchlist')
@@ -200,7 +199,7 @@ app.get('/pokemon/byType/:type',
 )
 
 app.post('/pokemon/byCategory',
-  // show list of Pokemons of a specific type
+  // show list of Pokemons of a specific category
   async (req,res,next) => {
     const {category} = req.body;
     const pokemons = await Pokemon.find({ category : {$regex: category, $options: 'i'}}).sort({id:1})
@@ -210,7 +209,7 @@ app.post('/pokemon/byCategory',
 )
 
 app.get('/pokemon/byCategory/:category',
-  // show a list of Pokemons by a given type
+  // show list of Pokemons of a specific category
   async (req,res,next) => {
     const {category} = req.params
     const pokemons = await Pokemon.find({ category : {$regex: category, $options: 'i'}}).sort({id:1})
@@ -220,7 +219,7 @@ app.get('/pokemon/byCategory/:category',
 )
 
 app.post('/pokemon/byCaptureRate',
-  // show list of Pokemons of a specific type
+  // show list of Pokemons w/ a capture rate greater than or equal to the entered value
   async (req,res,next) => {
     const {captureRate} = req.body;
     const pokemons = await Pokemon.find({ captureRate : {$gte: captureRate}}).sort({id:1})
@@ -230,7 +229,7 @@ app.post('/pokemon/byCaptureRate',
 )
 
 app.get('/pokemon/byCaptureRate/:captureRate',
-  // show a list of Pokemons by a given type
+  // show list of Pokemons w/ a capture rate greater than or equal to the entered value
   async (req,res,next) => {
     const {captureRate} = req.params
     const pokemons = await Pokemon.find({ captureRate : {$gte: captureRate}}).sort({id:1})
@@ -240,6 +239,7 @@ app.get('/pokemon/byCaptureRate/:captureRate',
 )
 
 app.post('/pokemon/addData/:pokemonName',
+//add pokemon to personal data/lists; (seen,caught,fav)
 isLoggedIn,
   async (req,res,next) => { 
     try {
@@ -298,7 +298,7 @@ app.get('/pokemon/myData',
 )
 
 app.get('/pokemon/myData/seen',
-  // show the current user's data
+  // show the current user's data for seen pokemon
   isLoggedIn,
   async (req,res,next) => {
     try{
@@ -317,6 +317,7 @@ app.get('/pokemon/myData/seen',
 
 app.get('/pokemon/myData/seen/remove/:pokemonName',
   // remove a pokemon from the user's seen pokemon list
+  isLoggedIn,
   async (req,res,next) => {
     try {
       const userId = res.locals.user._id;
@@ -332,7 +333,7 @@ app.get('/pokemon/myData/seen/remove/:pokemonName',
 )
 
 app.get('/pokemon/myData/caught',
-  // show the current user's data
+  // show the current user's data for caught pokemon
   isLoggedIn,
   async (req,res,next) => {
     try{
@@ -350,6 +351,7 @@ app.get('/pokemon/myData/caught',
 
 app.get('/pokemon/myData/caught/remove/:pokemonName',
   // remove a pokemon from the user's caught pokemon list
+  isLoggedIn,
   async (req,res,next) => {
     try {
       const userId = res.locals.user._id;
@@ -365,7 +367,7 @@ app.get('/pokemon/myData/caught/remove/:pokemonName',
 )
 
 app.get('/pokemon/myData/favorite',
-  // show the current user's data
+  // show the current user's data for favorite pokemon
   isLoggedIn,
   async (req,res,next) => {
     try{
@@ -382,7 +384,8 @@ app.get('/pokemon/myData/favorite',
 )
 
 app.get('/pokemon/myData/favorite/remove/:pokemonName',
-  // remove a pokemon from the user's seen pokemon list
+  // remove a pokemon from the user's favorite pokemon list
+  isLoggedIn,
   async (req,res,next) => {
     try {
       const userId = res.locals.user._id;
