@@ -314,6 +314,23 @@ app.get('/pokemon/myData/seen',
   }
 )
 
+
+app.get('/pokemon/myData/seen/remove/:pokemonName',
+  // remove a pokemon from the user's seen pokemon list
+  async (req,res,next) => {
+    try {
+      const userId = res.locals.user._id;
+      const pokemonName = req.params.pokemonName
+      await PersonalData.findOneAndUpdate (
+        {userId:userId,
+        pokemonName:pokemonName}, { $set : {seen:"false"}}, {upsert:true},)         
+        res.redirect('/pokemon/myData/seen')
+      } catch(e){
+        next(e)
+    }
+  }
+)
+
 app.get('/pokemon/myData/caught',
   // show the current user's data
   isLoggedIn,
@@ -327,6 +344,22 @@ app.get('/pokemon/myData/caught',
       res.render('caughtlist')
     } catch(e){
       next(e)
+    }
+  }
+)
+
+app.get('/pokemon/myData/caught/remove/:pokemonName',
+  // remove a pokemon from the user's caught pokemon list
+  async (req,res,next) => {
+    try {
+      const userId = res.locals.user._id;
+      const pokemonName = req.params.pokemonName
+      await PersonalData.findOneAndUpdate (
+        {userId:userId,
+        pokemonName:pokemonName}, { $set : {caught:"false"}}, {upsert:true},)         
+        res.redirect('/pokemon/myData/caught')
+      } catch(e){
+        next(e)
     }
   }
 )
@@ -348,7 +381,21 @@ app.get('/pokemon/myData/favorite',
   }
 )
 
-
+app.get('/pokemon/myData/favorite/remove/:pokemonName',
+  // remove a pokemon from the user's seen pokemon list
+  async (req,res,next) => {
+    try {
+      const userId = res.locals.user._id;
+      const pokemonName = req.params.pokemonName
+      await PersonalData.findOneAndUpdate (
+        {userId:userId,
+        pokemonName:pokemonName}, { $set : {favorite:"false"}}, {upsert:true},)         
+        res.redirect('/pokemon/myData/favorite')
+      } catch(e){
+        next(e)
+    }
+  }
+)
 
 app.use(isLoggedIn)
 

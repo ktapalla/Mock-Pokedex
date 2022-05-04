@@ -1,127 +1,137 @@
 <h1 class="text-color-primary m-3 p-3" style="text-align:center">Caught Pokemon</h1><hr>
-    <div id="caughtCarousel"  class="carousel slide mx-auto m-4 w-50 pt-3 border border-primary border-3" data-bs-ride="carousel" >
-        <!-- indicators -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
-            <% let cInd = 1 %>
-            <% while (cInd < caughtPokemon.length) { %>
-                <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="<%=cInd%>" class="bg-success"aria-label="Slide <%=cInd+1%>"></button>
-                <% cInd += 1 %>
-            <% } %>
-        </div>
-        <!-- images -->
-        <div class="carousel-inner">
-            <div class="carousel-item active justify-content-center" >
-                <a href="/pokemon/byName/<%=caughtPokemon[0].name%>" data-target="<%=caughtPokemon[0].name%>Img">
-                    <img src="<%=caughtPokemon[0].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[0].name%>" id="<%=caughtPokemon[0].name%>Img">
-                </a>
+    <% if (caughtPokemon.length > 0) { %>    
+        <div id="caughtCarousel"  class="carousel slide mx-auto m-4 w-50 pt-3 border border-primary border-3" data-bs-ride="carousel" >
+            <!-- indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
+                <% let cInd = 1 %>
+                <% while (cInd < caughtPokemon.length) { %>
+                    <button type="button" data-bs-target="#caughtCarousel" data-bs-slide-to="<%=cInd%>" class="bg-success"aria-label="Slide <%=cInd+1%>"></button>
+                    <% cInd += 1 %>
+                <% } %>
             </div>
-            <% cInd = 1 %>
-            <% while (cInd < caughtPokemon.length) { %>
-                <div class="carousel-item">
-                    <a href="/pokemon/byName/<%=caughtPokemon[cInd].name%>" data-target="<%=caughtPokemon[cInd].name%>Img">
-                        <img src="<%=caughtPokemon[cInd].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[cInd].name%>" id="<%=caughtPokemon[cInd].name%>Img">
+            <!-- images -->
+            <div class="carousel-inner">
+                <div class="carousel-item active justify-content-center" >
+                    <a href="/pokemon/byName/<%=caughtPokemon[0].name%>" data-target="<%=caughtPokemon[0].name%>Img">
+                        <img src="<%=caughtPokemon[0].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[0].name%>" id="<%=caughtPokemon[0].name%>Img">
                     </a>
                 </div>
-                <% cInd += 1 %>
-            <% } %>
+                <% cInd = 1 %>
+                <% while (cInd < caughtPokemon.length) { %>
+                    <div class="carousel-item">
+                        <a href="/pokemon/byName/<%=caughtPokemon[cInd].name%>" data-target="<%=caughtPokemon[cInd].name%>Img">
+                            <img src="<%=caughtPokemon[cInd].imgURL%>" class="d-block w-100" alt="<%= caughtPokemon[cInd].name%>" id="<%=caughtPokemon[cInd].name%>Img">
+                        </a>
+                    </div>
+                    <% cInd += 1 %>
+                <% } %>
+            </div>
+            <!-- buttons -->
+            <div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#caughtCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#caughtCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
-        <!-- buttons -->
-        <div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#caughtCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#caughtCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
 
 
-    <div class="d-flex flex-wrap overflow-scroll">
-        <% for (pokemon of caughtPokemon) {%>
-            <div class="bg-light w-33 mx-auto m-2 p-2 border border-primary border-2">
-                
-                <div class="m-2 p-2">
-                    <h1 style="text-align:center">
-                        <strong><%= pokemon['name'] %> </strong>
-                    </h1>
+        <div class="d-flex flex-wrap overflow-scroll">
+            <% for (pokemon of caughtPokemon) {%>
+                <div class="bg-light w-33 mx-auto m-2 p-2 border border-primary border-2">
                     
-                </div>
-                <div class="w-50 mx-auto">
-                    <a href="/pokemon/byName/<%=pokemon.name%>" >
-                        <img class="image w-100" src="<%= pokemon.imgURL%>"></img>
-                    </a>
+                    <div class="m-2 p-2">
+                        <h1 style="text-align:center">
+                            <strong><%= pokemon['name'] %> </strong>
+                        </h1>
+                        
+                    </div>
+                    <div class="w-50 mx-auto">
+                        <a href="/pokemon/byName/<%=pokemon.name%>" >
+                            <img class="image w-100" src="<%= pokemon.imgURL%>"></img>
+                        </a>
+
+                    </div>
+                    <div class="row m-2 border border-success border-2 overflow-scroll" >
+                        <div class="col m-1 p-1"> 
+                            <strong style="font-size: smaller;">Pokedex #: </strong>
+                            <span style="font-size: smaller;"> <%= pokemon.id %></span> <br>
+                            <strong  style="font-size: smaller;">Type(s): </strong>
+                            <span style="font-size: smaller;"> 
+                            <%= pokemon['type1'] %>              
+                            <% if (pokemon['type2'] != "None") { %>
+                                & <%= pokemon['type2'] %>
+                            <% } %>
+                        </span> 
+                        </div>
+                        <div class="col m-1 p-1">
+                            <strong style="font-size: smaller;">HP: </strong>
+                            <span style="font-size: smaller;"> 
+                            <%= pokemon.hp %> <br>
+                            </span>
+                            <strong style="font-size: smaller;">Speed: </strong>
+                            <span style="font-size: smaller;"> 
+                            <%= pokemon.speed %> <br>
+                            </span>
+                        </div>
+                        <div class="col m-1 p-1" >
+                            <strong  style="font-size: smaller;">Attack: </strong>
+                            <span style="font-size: smaller;"> 
+                            <%= pokemon.attack %> <br>
+                            </span>
+                            <strong style="font-size: smaller;">Defense: </strong>
+                            <span style="font-size: smaller;"> 
+                            <%= pokemon.defense %> <br>
+                            </span>
+                        </div>
+                        <div class="col m-1 p-1">
+                            <strong style="font-size: smaller;">Sp. Attack: </strong>
+                            <span style="font-size: smaller;"> 
+                            <%= pokemon.spAttack %> <br>
+                            </span>
+                            <strong style="font-size: smaller;">Sp. Defense: </strong>
+                            <span style="font-size: smaller;"> 
+                            <%= pokemon.spDefense %> <br>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <strong style="font-size: smaller;">Moves: </strong> <br>
+                        <% for (move in pokemon.moves) { %> 
+                            <span style="font-size: smaller;" class="p-3"> 
+                            <u> <%= move %> </u><br>
+                            </span>
+                        <% } %>
+                        <br>
+                    </div>
+                    <div>
+                        <strong>Mark As:</strong>
+                        <form method="post" action="/pokemon/addData/<%= pokemon.name %>">
+                            <input type="checkbox" id="<%= pokemon.name %>Seen" name="seen" value="seen">
+                            <label for="<%= pokemon.name %>Seen">Seen</label>
+                            <input type="checkbox" id="<%= pokemon.name %>Caught" name="caught" value="caught">
+                            <label for="<%= pokemon.name %>Caught">Caught</label>
+                            <input type="checkbox" id="<%= pokemon.name %>Favorite" name="favorite" value="favorite">
+                            <label for="<%= pokemon.name %>Favorite">Favorite</label>
+                            <input type="submit" value="Set" class="m-2">
+                        </form>
+                    </div>
+                    <div>
+                        <a href="/pokemon/myData/caught/remove/<%=pokemon.name%>"> Remove from Caught</a>
+                    </div>
 
                 </div>
-                <div class="row m-2 border border-success border-2 overflow-scroll" >
-                    <div class="col m-1 p-1"> 
-                        <strong style="font-size: smaller;">Pokedex #: </strong>
-                        <span style="font-size: smaller;"> <%= pokemon.id %></span> <br>
-                        <strong  style="font-size: smaller;">Type(s): </strong>
-                        <span style="font-size: smaller;"> 
-                        <%= pokemon['type1'] %>              
-                        <% if (pokemon['type2'] != "None") { %>
-                            & <%= pokemon['type2'] %>
-                        <% } %>
-                    </span> 
-                    </div>
-                    <div class="col m-1 p-1">
-                        <strong style="font-size: smaller;">HP: </strong>
-                        <span style="font-size: smaller;"> 
-                        <%= pokemon.hp %> <br>
-                        </span>
-                        <strong style="font-size: smaller;">Speed: </strong>
-                        <span style="font-size: smaller;"> 
-                        <%= pokemon.speed %> <br>
-                        </span>
-                    </div>
-                    <div class="col m-1 p-1" >
-                        <strong  style="font-size: smaller;">Attack: </strong>
-                        <span style="font-size: smaller;"> 
-                        <%= pokemon.attack %> <br>
-                        </span>
-                        <strong style="font-size: smaller;">Defense: </strong>
-                        <span style="font-size: smaller;"> 
-                        <%= pokemon.defense %> <br>
-                        </span>
-                    </div>
-                    <div class="col m-1 p-1">
-                        <strong style="font-size: smaller;">Sp. Attack: </strong>
-                        <span style="font-size: smaller;"> 
-                        <%= pokemon.spAttack %> <br>
-                        </span>
-                        <strong style="font-size: smaller;">Sp. Defense: </strong>
-                        <span style="font-size: smaller;"> 
-                        <%= pokemon.spDefense %> <br>
-                        </span>
-                    </div>
-                </div>
-                <div class="p-3">
-                    <strong style="font-size: smaller;">Moves: </strong> <br>
-                    <% for (move in pokemon.moves) { %> 
-                        <span style="font-size: smaller;" class="p-3"> 
-                        <u> <%= move %> </u><br>
-                        </span>
-                    <% } %>
-                    <br>
-                </div>
-                <div>
-                    <strong>Mark As:</strong>
-                    <form method="post" action="/pokemon/addData/<%= pokemon.name %>">
-                        <input type="checkbox" id="<%= pokemon.name %>Seen" name="seen" value="seen">
-                        <label for="<%= pokemon.name %>Seen">Seen</label>
-                        <input type="checkbox" id="<%= pokemon.name %>Caught" name="caught" value="caught">
-                        <label for="<%= pokemon.name %>Caught">Caught</label>
-                        <input type="checkbox" id="<%= pokemon.name %>Favorite" name="favorite" value="favorite">
-                        <label for="<%= pokemon.name %>Favorite">Favorite</label>
-                        <input type="submit" value="Set" class="m-2">
-                    </form>
-                </div>
-            
+                
+            <% }%>
             </div>
-            
-        <% }%>
+
+    <% } else { %>
+        <div style="text-align: center;">
+            No Data to Show. You have no Caught Pokemon. Mark Pokemon as Caught to include on this page.
         </div>
+    <% } %>
