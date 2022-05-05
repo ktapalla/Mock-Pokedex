@@ -12,7 +12,7 @@ A list of Pokemon can be found/searched by TYPE, CATEGORY, and/or a minimum CAPT
 <img class="image w-100" src="/images/homePg.png"></img>
 
 From the searches, Pokemon can be marked as SEEN, CAUGHT, and/or FAVORITE using the checkboxes. Click the SET button to complete the process. From the NAME/POKEDEX# searches, the option will be at the bottom underneath all of the Pokemon data presented. From the TYPE/CATEGORY/CAPTURE RATE searches, the option will be on the right-most column of the tables. 
-<img class="image w-100" src="/images/specificSearch.png"></img>
+<img class="image w-100" src="/public/images/specificSearch.png"></img>
 <img class="image w-100" src="/images/specificSearch-checkboxes.png"></img>
 <img class="image w-100" src="/images/listSearch.png"></img>
 
