@@ -29,12 +29,31 @@
         </div>
     </div>
     <div class="p-3">
-        <strong>Moves: </strong> <br>
-        <% for (move in pokemon.moves) { %> 
-            <span class="p-3"> 
-                <%= move %> <br>
-            </span>
-        <% } %>
+        <strong>Moves: </strong><br>
+        <ol>
+            <% for ( move in pokemon.moves) { %> 
+                <span class="p-3">  
+                    <li>
+                        <u><%=move%></u> -<br>
+                        <div>
+                            <ul>
+                                <%for ( data in pokemon.moves[move]) { %>
+                                    <li>
+                                        <strong><%=data%>: </strong>
+                                        <em><%=pokemon.moves[move][data]%><br></em>
+                                    </li>
+                                    <% } %> 
+
+                            </ul>
+
+                        </div>
+                    </li>
+    
+                </span>
+            <% } %> 
+        </ol>
+        
+
     </div>
     <div>
         <strong>Mark As:</strong>
