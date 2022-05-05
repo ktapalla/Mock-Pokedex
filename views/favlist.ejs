@@ -101,13 +101,17 @@
                         </div>
                     </div>
                     <div class="p-3">
-                        <strong style="font-size: smaller;">Moves: </strong> <br>
-                        <% for (move in pokemon.moves) { %> 
-                            <span style="font-size: smaller;" class="p-3"> 
-                            <u> <%= move %> </u><br>
-                            </span>
-                        <% } %>
-                        <br>
+                        <strong style="font-size: smaller;">*Moves: </strong> <br>
+                        <ol>
+                            <% for (move in pokemon.moves) { %> 
+                                <span style="font-size: smaller;" > 
+                                <li><u> <%= move %> </u></li>
+                                </span>
+                            <% } %>
+                        </ol>
+                        <div style="font-size: smaller;">
+                            <em>*More data available on Pokemon page. Click image to view.</em>
+                        </div>
                     </div>
                     <div>
                         <strong>Mark As:</strong>
