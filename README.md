@@ -1,7 +1,6 @@
-# Mock Pokedex 
+# README - Mock Pokedex 
 
 This is a mock pokedex project (with information about the first 809 Pokemon in the Pokedex), which has a simple authentication module and provides access to a mongoose database in the cloud. 
-
 
 
 ## How to Use: 
@@ -21,7 +20,7 @@ NOTE: User must be logged in to add Pokemon to SEEN/CAUGHT/FAVORITE lists. If no
 <img class="image w-100" src="/public/images/login-signup.png"></img>
 
 
-There are 4 different ways to view Personal Data. ALL DATA page shows a three-way summary/view of user's SEEN/CAUGHT/FAVORITE Pokemon. There are also individual pages for each category. Pages can be access through the nav-bar dropdown (labeled "My Data"). Clicking on Pokemon images on these 4 pages will bring the user to the page specific to that Pokemon. Pokemon names on the ALL DATA page also link to the page specific to that Pokemon. 
+There are 4 different ways to view Personal Data. ALL DATA page shows a three-way summary/view of user's SEEN/CAUGHT/FAVORITE Pokemon. There are also individual pages for each category. Pages can be accessed through the nav-bar dropdown (labeled "My Data"). Clicking on Pokemon images on these 4 pages will bring the user to the page specific to that Pokemon. Pokemon names on the ALL DATA page also link to the page specific to that Pokemon. 
 <img class="image w-100" src="/public/images/allData.png"></img>
 <img class="image w-100" src="/public/images/specificData.png"></img>
 

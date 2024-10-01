@@ -1,20 +1,22 @@
-<h1 class="text-color-danger m-3 p-3" style="text-align:center">Seen Pokemon</h1><hr>
-    <% if (seenPokemon.length > 0) { %>    
-        <div id="seenCarousel"  class="carousel slide mx-auto m-4 w-50 pt-3 border border-danger border-3" data-bs-ride="carousel" >
+<h1 class="text-color-danger m-3 p-3" style="text-align:center">Seen Pokemon</h1><hr>  
+        <div id="picCarousel"  class="carousel slide mx-auto m-4 w-50 pt-3 border border-danger border-3" data-bs-ride="carousel" >
             <!-- indicators -->
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
-                <% let sInd = 1 %>
-                <% while (sInd < seenPokemon.length) { %>
-                    <button type="button" data-bs-target="#seenCarousel" data-bs-slide-to="<%=sInd%>" class="bg-success"aria-label="Slide <%=sInd+1%>"></button>
-                    <% sInd += 1 %>
-                <% } %>
+                <button type="button" data-bs-target="#picCarousel" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 1"></button>
+                <script language="JavaScript">
+                    let pInd = 0;
+                    while (pInd < 20) {
+                        <button type="button" data-bs-target="#picCarousel" data-bs-slide-to="<%=pInd%>" class="bg-success"aria-label="Slide <%=pInd+1%>"></button>
+                        pInd += 1
+                    }
+                </script>
+                
             </div>
             <!-- images -->
             <div class="carousel-inner">
                 <div class="carousel-item active justify-content-center">
-                    <a href="/pokemon/byName/<%=seenPokemon[0].name%>" data-target="<%=seenPokemon[0].name%>Img">
-                        <img src="<%=seenPokemon[0].imgURL%>" class="d-block w-100" alt="<%= seenPokemon[0].name%>" id="<%=seenPokemon[0].name%>Img">
+                    <!-- <a href="/pokemon/byName/<%=seenPokemon[0].name%>" data-target="<%=seenPokemon[0].name%>Img"> -->
+                        <img src="pics/<%pInd%>.jpg" class="d-block w-100" id="<%=seenPokemon[0].name%>Img">
                     </a>
                 </div>
                 <% sInd = 1 %>
