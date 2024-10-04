@@ -14,7 +14,7 @@ const session = require("express-session"); // to handle sessions using cookies
 const debug = require("debug")("personalapp:server"); 
 const layouts = require("express-ejs-layouts");
 const axios = require("axios")
-var MongoDBStore = require('conect-mongodb-session')(session);
+// var MongoDBStore = require('conect-mongodb-session')(session);
 
 // *********************************************************** //
 //  Loading models
@@ -34,9 +34,10 @@ const pokemons = require('./public/data/pokedex.json')
 // *********************************************************** //
 
 const mongoose = require( 'mongoose' );
-// const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
-const mongodb_URI = process.env.mongodb_URI
+const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
+// const mongodb_URI = process.env.mongodb_URI
 
+console.log("MONGODB_URI : ", mongodb_URI);
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings 
