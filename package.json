@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "../startup.ps1"
+    "start": "startup.ps1"
   },
   "engines": {
     "node": "18.17.1"
