@@ -438,7 +438,7 @@ var serverPort = app.listen(app.get('port'), function() {
 const http = require("http");
 const server = http.createServer(app);
 
-server.listen(serverPort);
+server.listen(port);
 
 
 function onListening() {
