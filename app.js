@@ -37,15 +37,12 @@ const mongoose = require( 'mongoose' );
 // const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
 const mongodb_URI = process.env.mongodb_URI
 
-console.log("MONGODB_URI : ", mongodb_URI);
-
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings 
 mongoose.set('useFindAndModify', false); 
 mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
-console.log("DB : ", db);
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {console.log("we are connected!!!")});
 
