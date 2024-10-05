@@ -34,7 +34,7 @@ const pokemons = require('./public/data/pokedex.json')
 // *********************************************************** //
 
 const mongoose = require( 'mongoose' );
-const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
+var mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
 if (process.env.mongodb_URI != undefined) {
   mongodb_URI = process.env.mongodb_URI
 }
