@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./startup.sh",
-    "web": "node app.js"
+    "start": "node app.js"
   },
   "engines": {
     "node": "18.17.1"
