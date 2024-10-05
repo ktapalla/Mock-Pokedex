@@ -40,6 +40,8 @@ if (process.env.mongodb_URI != undefined) {
 }
 // const mongodb_URI = process.env.mongodb_URI
 
+console.log("Mongo URI : ", mongodb_URI)
+
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings 
 mongoose.set('useFindAndModify', false); 
