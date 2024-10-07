@@ -427,17 +427,17 @@ app.use(function(err, req, res, next) {
 //  Starting up the server!
 // *********************************************************** //
 //Here we set the port to use between 1024 and 65535  (2^16-1)
-const port = process.env.PORT;
+const port = process.env.PORT || '3031';
+// const port = process.env.PORT;
 app.set("port", port);
-var serverPort = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + serverPort.address().port);
-});
+// var serverPort = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + port);
+// });
 
 // and now we startup the server listening on that port
 const http = require("http");
 const server = http.createServer(app);
-server.listen(port, '0.0.0.0')
-// server.listen(port);
+server.listen(port);
 
 
 function onListening() {
