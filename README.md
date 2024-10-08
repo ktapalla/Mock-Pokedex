@@ -52,7 +52,7 @@ and start the project with
 nodemon
 ```
 or go to the mock pokedex website at: 
-https://mockpokedex.herokuapp.com/
+https://mockpokedex-56658932b763.herokuapp.com/
 
 
 

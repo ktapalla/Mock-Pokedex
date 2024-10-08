@@ -38,9 +38,7 @@ var mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
 if (process.env.mongodb_URI != undefined) {
   mongodb_URI = process.env.mongodb_URI
 }
-// const mongodb_URI = process.env.mongodb_URI
 
-console.log("Mongo URI : ", mongodb_URI)
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings 
@@ -427,16 +425,14 @@ app.use(function(err, req, res, next) {
 //  Starting up the server!
 // *********************************************************** //
 //Here we set the port to use between 1024 and 65535  (2^16-1)
-const port = process.env.PORT || '3031';
-// const port = process.env.PORT;
+const port = process.env.PORT || '3000';
 app.set("port", port);
-// var serverPort = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + port);
-// });
+console.log('Express server listening on port ' + port);
 
 // and now we startup the server listening on that port
 const http = require("http");
 const server = http.createServer(app);
+
 server.listen(port);
 
 
